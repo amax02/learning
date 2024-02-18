@@ -17,7 +17,7 @@
                 </ul>
             </div>
             @endif
-            <form action="/materis/{{ $materi->id }}" method="post">
+            <form action="/materis/{{ $materi->id }}" method="post" enctype="multipart/form-data">
                 @method('put')
                 @csrf
                 <div class="mb-3">
@@ -41,7 +41,7 @@
                     <div class="row">
                         <div class="col-md-6 mb-2">
                             <label for="igambar" class="control-label">Gambar</label>
-                            <input id="igambar" type="file" name="gambar" accept=".jpg, .jpeg" class="form-control" required="" onfocus="focused(this)" onfocusout="defocused(this)" value="{{ $materi->gambar }}">
+                            <input id="igambar" type="file" name="gambar" accept=".jpg, .jpeg" class="form-control" required="" onfocus="focused(this)" onfocusout="defocused(this)">
                         </div>
                         <div class="col-md-1 mb-2">
                             <img id="img-igambar" src="" alt="" class="img-fluid rounded">
@@ -52,7 +52,7 @@
                         <div class="col-md-12 mb-2">
                             <label for="itext" class="control-label">Text</label>
                             <!-- Ganti textarea dengan editor CKEditor -->
-                            <textarea name="text" id="itext" class="form-control ckeditor" cols="30" rows="10" value="{{ $materi->text }}"></textarea>
+                            <textarea name="text" id="itext" class="form-control ckeditor" cols="30" rows="10" value="">{{ $materi->text }}</textarea>
                         </div>
                     </div>
 

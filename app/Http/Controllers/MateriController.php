@@ -53,17 +53,34 @@ class MateriController extends Controller
             'judul' => 'required',
             'slug' => 'required',
             'text' => 'required',
-            'gambar' => 'required',
+            'gambar' => 'required|max:2048',
             'kategori' => 'required',
 
         ]);
         $materi = Materi::find($id);
+
+        
+
+        $file = $request->file('gambar');
+        $filename = time() . '_' . $file->getClientOriginalName();
+        
+        // Simpan file di storage/app/public
+        $res = $file->storeAs('public', $filename);
+        if(!$res){
+        return redirect('materis')->with('failed', 'Gagal upload gambar.');
+
+        }
+
+
         $materi->update([
             'judul' => $request->judul,
             'slug' => $request->slug,
             'text' => $request->text,
-            'gambar' => $request->gambar,
+            'gambar' => $filename,
             'kategori' => $request->kategori,
+
+
+        
 
 
         ]);

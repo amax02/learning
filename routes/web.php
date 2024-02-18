@@ -14,6 +14,9 @@ use Illuminate\Support\Facades\Route;
 */
 
     Route::get('/', [\App\Http\Controllers\WelcomeController::class, 'index']);
+    Route::get('/list/{id}', [\App\Http\Controllers\WelcomeController::class, 'index']);
+    Route::get('/frontend', [\App\Http\Controllers\WelcomeController::class, 'index']);
+    Route::get('/course/{id}', [\App\Http\Controllers\WelcomeController::class, 'course']);
     
 
 

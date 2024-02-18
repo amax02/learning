@@ -13,6 +13,7 @@ class Video extends Model
     protected $fillable = [
         'judul',
         'link',
+        'id_materis',
 
     ];
 }

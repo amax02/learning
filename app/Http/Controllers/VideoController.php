@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Materi;
 use App\Models\Video;
 use Illuminate\Http\Request;
 
@@ -9,26 +10,28 @@ class VideoController extends Controller
 {
     function index()
     {
-        $videos = Video::all();
+        $videos = Video::join('materis', 'materis.id', '=', 'videos.id_materis')->select('videos.id','link', 'materis.judul')->get();
 
         return view('videos.index', compact(['videos']));
     }
 
     function create()
     {
-        return view('videos.create');
+        $materis = Materi::all();
+        return view('videos.create', compact('materis'));
     }
 
     function store(Request $request)
     {
         $request->validate([
-            'judul' => 'required|min:5',
             'link' => 'required',
+            'id_materis' => 'required',
 
         ]);
         Video::create([
-            'judul' => $request->judul,
+            'judul' => $request->judul ?? '',
             'link' => $request->link,
+            'id_materis' => $request->id_materis,
 
         ]);
 
@@ -37,21 +40,23 @@ class VideoController extends Controller
 
     function edit($id)
     {
+        $materis = Materi::all();
         $video = Video::find($id);
-        return view('videos.edit', compact(['video']));
+        return view('videos.edit', compact(['video', 'materis']));
     }
 
     function update(Request $request, $id)
     {
         $request->validate([
-            'judul' => 'required',
             'link' => 'required',
+            'id_materis' => 'required',
 
         ]);
         $video = Video::find($id);
         $video->update([
-            'judul' => $request->judul,
+            'judul' => $request->judul ?? '',
             'link' => $request->link,
+            'id_materis' => $request->id_materis,
 
 
         ]);

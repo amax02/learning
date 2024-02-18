@@ -33,7 +33,7 @@
                             <td>{{ $materi->slug}}</td>
                             <td>{{ $materi->kategori}}</td>
                             <td>
-                                <img src="{{ $materi->gambar }}" alt="Gambar">
+                                <img src="{{ asset('storage/'.$materi->gambar) }}" alt="Gambar" class="img-fluid">
                             </td>
                             <td class="action-buttons d-flex justify-content-center">
                                 <a href="/materis/{{ $materi->id }}/edit" class="btn btn-primary me-1">Edit</a>

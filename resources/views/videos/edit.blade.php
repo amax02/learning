@@ -21,8 +21,12 @@
                 @method('put')
                 @csrf
                 <div class="mb-3">
-                    <label for="judul" class="form-label">Judul Video</label>
-                    <input name="judul" type="text" class="form-control" id="judul" aria-describedby="judul" value="{{ $video->judul }}">
+                    <label for="id_materis" class="form-label">Materi</label>
+                    <select name="id_materis" type="text" class="form-control" id="id_materis" aria-describedby="id_materis">
+                        @foreach($materis as $k => $v)
+                            <option value="{{ $v['id'] }}" {{ $v['id'] == $video->id_materis ? 'selected' : '' }}>{{ $v['judul'] }}</option>
+                        @endforeach
+                    </select>
 
                 </div>
                 <div class="mb-3">
